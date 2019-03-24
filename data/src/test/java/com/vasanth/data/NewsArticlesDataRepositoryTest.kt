@@ -30,7 +30,7 @@ class NewsArticlesDataRepositoryTest {
 
 
     @Test
-    fun getNewsArticles_whenCacheDateIsNotAvailable_shouldGetFromRemoteSource() {
+    fun getNewsArticles_WhenCacheDateIsNotAvailable_shouldGetFromRemoteSource() {
         val newsArticleEntity = NewsArticleEntityFactory.makeNewsArticleEntity()
         val newsArticle = NewsArticleFactory.makeNewsArticle()
         `when`(cacheDataStore.areNewsArticlesCached()).thenReturn(Single.just(false))
@@ -45,7 +45,7 @@ class NewsArticlesDataRepositoryTest {
     }
 
     @Test
-    fun getNewsArticles_whenCacheDateIsAvailable_shouldGetFromCacheSource() {
+    fun getNewsArticles_WhenCacheDateIsAvailable_shouldGetFromCacheSource() {
         val newsArticleEntity = NewsArticleEntityFactory.makeNewsArticleEntity()
         val newsArticle = NewsArticleFactory.makeNewsArticle()
         `when`(cacheDataStore.areNewsArticlesCached()).thenReturn(Single.just(true))

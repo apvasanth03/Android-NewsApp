@@ -23,7 +23,7 @@ class GetNewsArticlesUseCaseTest {
     lateinit var getNewsArticlesUseCase: GetNewsArticlesUseCase
 
     @Test
-    fun getNewsArticles_shouldCallRepository() {
+    fun getNewsArticles_ShouldCallRepository() {
         val newsArticle = NewsArticleFactory.makeNewsArticle()
         `when`(newsArticlesRepository.getNewsArticles()).thenReturn(Observable.just(listOf(newsArticle)))
 
@@ -33,7 +33,7 @@ class GetNewsArticlesUseCaseTest {
     }
 
     @Test
-    fun getNewsArticles_shouldReturnDataFromRepository() {
+    fun getNewsArticles_ShouldReturnDataFromRepository() {
         val newsArticle = NewsArticleFactory.makeNewsArticle()
         `when`(newsArticlesRepository.getNewsArticles()).thenReturn(Observable.just(listOf(newsArticle)))
 

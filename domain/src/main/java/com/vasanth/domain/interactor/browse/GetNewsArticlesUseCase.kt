@@ -12,7 +12,7 @@ import javax.inject.Inject
  *
  * @author Vasanth
  */
-class GetNewsArticlesUseCase @Inject constructor(
+open class GetNewsArticlesUseCase @Inject constructor(
     private val newsArticlesRepository: NewsArticlesRepository,
     postExecutionThread: PostExecutionThread
 ) : ObservableUseCase<List<NewsArticle>, Nothing?>(postExecutionThread) {

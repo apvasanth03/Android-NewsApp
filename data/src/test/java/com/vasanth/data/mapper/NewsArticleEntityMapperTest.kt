@@ -13,7 +13,7 @@ class NewsArticleEntityMapperTest {
     private val mapper = NewsArticleEntityMapper()
 
     @Test
-    fun mapFromEntity_givenCorrectEntityModel_shouldParseCorrectDomainModel() {
+    fun mapFromEntity_GivenCorrectEntityModel_ShouldParseCorrectDomainModel() {
         val entity = NewsArticleEntityFactory.makeNewsArticleEntity()
 
         val domain = mapper.mapFromEntity(entity)

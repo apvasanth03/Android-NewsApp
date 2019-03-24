@@ -7,6 +7,8 @@ import java.util.*
 
 /**
  * A class contains date utility methods.
+ *
+ * @author Vasanth
  */
 object DateUtil {
 

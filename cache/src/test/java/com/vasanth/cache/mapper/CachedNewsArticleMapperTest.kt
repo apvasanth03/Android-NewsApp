@@ -14,7 +14,7 @@ class CachedNewsArticleMapperTest {
     private val mapper = CachedNewsArticleMapper()
 
     @Test
-    fun mapFromCached_givenCorrectCacheModel_shouldParseCorrectEntityModel() {
+    fun mapFromCached_GivenCorrectCacheModel_ShouldParseCorrectEntityModel() {
         val cache = CachedNewsArticleFactory.makeCachedNewsArticle()
 
         val entity = mapper.mapFromCached(cache)
@@ -29,7 +29,7 @@ class CachedNewsArticleMapperTest {
     }
 
     @Test
-    fun mapToCached_givenCorrectEntityModel_shouldParseCorrectCacheModel() {
+    fun mapToCached_GivenCorrectEntityModel_ShouldParseCorrectCacheModel() {
         val entity = NewsArticleEntityFactory.makeNewsArticleEntity()
 
         val cache = mapper.mapToCached(entity)

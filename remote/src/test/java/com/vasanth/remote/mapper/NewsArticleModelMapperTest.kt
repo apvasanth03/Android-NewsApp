@@ -14,7 +14,7 @@ class NewsArticleModelMapperTest {
     private val mapper = NewsArticleModelMapper()
 
     @Test
-    fun mapFromModel_givenCorrectModel_shouldParseCorrectEntity() {
+    fun mapFromModel_GivenCorrectModel_ShouldParseCorrectEntity() {
         val model = NewsArticleModelFactory.makeNewsArticleModel()
 
         val entity = mapper.mapFromModel(model)
