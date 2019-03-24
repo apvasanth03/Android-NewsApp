@@ -18,56 +18,86 @@ ext {
     rxJavaVersion = '2.2.7'
     threeTenABPVersion = '1.2.0'
 
+    //Testing
+    jUnitVersion = '4.12'
+    hamcrestVersion = '2.1'
+    mockitoKotlinVersion = '2.1.0'
+
     // Module - "app" dependencies.
     appUiDependencies = [
-            kotlin:             "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}",
-
-            androidAppCompact:  "androidx.appcompat:appcompat:${appcompatVersion}",
-            constraintLayout:   "androidx.constraintlayout:constraintlayout:${constraintLayoutVersion}",
+            kotlin           : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}",
+            androidAppCompact: "androidx.appcompat:appcompat:${appcompatVersion}",
+            constraintLayout : "androidx.constraintlayout:constraintlayout:${constraintLayoutVersion}",
     ]
 
     // Module - "domain" dependencies.
     domainDependencies = [
-            kotlin:             "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}",
-            javaxAnnotation:    "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
-            javaxInject:        "javax.inject:javax.inject:${javaxInjectVersion}",
-            rxJava:             "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+            kotlin         : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}",
+            javaxAnnotation: "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+            javaxInject    : "javax.inject:javax.inject:${javaxInjectVersion}",
+            rxJava         : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+    ]
+
+    // Module - "domain" test dependencies.
+    domainTestDependencies = [
+            junit        : "junit:junit:${jUnitVersion}",
+            hamcrest     : "org.hamcrest:hamcrest:${hamcrestVersion}",
+            mockitoKotlin: "com.nhaarman.mockitokotlin2:mockito-kotlin:${mockitoKotlinVersion}"
     ]
 
     // Module - "data" dependencies.
     dataDependencies = [
-            kotlin:             "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}",
-            javaxAnnotation:    "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
-            javaxInject:        "javax.inject:javax.inject:${javaxInjectVersion}",
-            rxJava:             "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+            kotlin         : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}",
+            javaxAnnotation: "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+            javaxInject    : "javax.inject:javax.inject:${javaxInjectVersion}",
+            rxJava         : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+    ]
+
+    // Module - "data" test dependencies.
+    dataTestDependencies = [
+            junit        : "junit:junit:${jUnitVersion}",
+            hamcrest     : "org.hamcrest:hamcrest:${hamcrestVersion}",
+            mockitoKotlin: "com.nhaarman.mockitokotlin2:mockito-kotlin:${mockitoKotlinVersion}"
     ]
 
     // Module - "remote" dependencies.
     remoteDependencies = [
-            kotlin:             "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}",
-            javaxAnnotation:    "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
-            javaxInject:        "javax.inject:javax.inject:${javaxInjectVersion}",
-            rxJava:             "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
-            threeTenADP:        "com.jakewharton.threetenabp:threetenabp:${threeTenABPVersion}"
+            kotlin         : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}",
+            javaxAnnotation: "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+            javaxInject    : "javax.inject:javax.inject:${javaxInjectVersion}",
+            rxJava         : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+            threeTenADP    : "com.jakewharton.threetenabp:threetenabp:${threeTenABPVersion}",
+    ]
+
+    // Module - "remote" test dependencies.
+    remoteTestDependencies = [
+            junit   : "junit:junit:${jUnitVersion}",
+            hamcrest: "org.hamcrest:hamcrest:${hamcrestVersion}",
     ]
 
     // Module - "cache" dependencies.
     cacheDependencies = [
-            kotlin:             "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}",
-            javaxAnnotation:    "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
-            javaxInject:        "javax.inject:javax.inject:${javaxInjectVersion}",
-            roomRuntime:        "androidx.room:room-runtime:${roomVersion}",
-            roomCompiler:       "androidx.room:room-compiler:${roomVersion}",
-            roomRxJava:         "androidx.room:room-rxjava2:${roomVersion}",
-            rxJava:             "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+            kotlin         : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}",
+            javaxAnnotation: "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+            javaxInject    : "javax.inject:javax.inject:${javaxInjectVersion}",
+            roomRuntime    : "androidx.room:room-runtime:${roomVersion}",
+            roomCompiler   : "androidx.room:room-compiler:${roomVersion}",
+            roomRxJava     : "androidx.room:room-rxjava2:${roomVersion}",
+            rxJava         : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+    ]
+
+    // Module - "cache" test dependencies.
+    cacheTestDependencies = [
+            junit   : "junit:junit:${jUnitVersion}",
+            hamcrest: "org.hamcrest:hamcrest:${hamcrestVersion}",
     ]
 
     // Module - "httpclient" dependencies.
     httpclientDependencies = [
-            kotlin:             "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}",
-            javaxAnnotation:    "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
-            javaxInject:        "javax.inject:javax.inject:${javaxInjectVersion}",
-            gson:               "com.google.code.gson:gson:${gsonVersion}",
+            kotlin         : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}",
+            javaxAnnotation: "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+            javaxInject    : "javax.inject:javax.inject:${javaxInjectVersion}",
+            gson           : "com.google.code.gson:gson:${gsonVersion}",
     ]
 
 

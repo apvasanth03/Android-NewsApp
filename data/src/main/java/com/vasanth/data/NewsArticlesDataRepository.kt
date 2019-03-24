@@ -45,7 +45,8 @@ class NewsArticlesDataRepository @Inject constructor(
     private fun getNewsArticlesFromRemoteAndSaveItToCache(): Single<List<NewsArticleEntity>> {
         return remoteDataStore.getNewsArticles()
             .flatMap { newsArticles ->
-                cacheDataStore.saveNewsArticles(newsArticles)
+                cacheDataStore.clearNewsArticles()
+                    .andThen(cacheDataStore.saveNewsArticles(newsArticles))
                     .toSingleDefault(newsArticles)
             }
     }

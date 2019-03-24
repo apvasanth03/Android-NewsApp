@@ -28,6 +28,7 @@ android {
 
 dependencies {
     def cacheDependencies = rootProject.ext.cacheDependencies
+    def cacheTestDependencies = rootProject.ext.cacheTestDependencies
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -46,4 +47,8 @@ dependencies {
     implementation cacheDependencies.javaxAnnotation
     implementation cacheDependencies.javaxInject
     implementation cacheDependencies.rxJava
+
+    // Testing.
+    testImplementation cacheTestDependencies.junit
+    testImplementation cacheTestDependencies.hamcrest
 }

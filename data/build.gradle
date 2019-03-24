@@ -2,6 +2,7 @@ apply plugin: 'kotlin'
 
 dependencies {
     def dataDependencies = rootProject.ext.dataDependencies
+    def dataTestDependencies = rootProject.ext.dataTestDependencies
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -15,6 +16,11 @@ dependencies {
     implementation dataDependencies.javaxAnnotation
     implementation dataDependencies.javaxInject
     implementation dataDependencies.rxJava
+
+    // Testing.
+    testImplementation dataTestDependencies.junit
+    testImplementation dataTestDependencies.hamcrest
+    testImplementation dataTestDependencies.mockitoKotlin
 }
 
 sourceCompatibility = "7"

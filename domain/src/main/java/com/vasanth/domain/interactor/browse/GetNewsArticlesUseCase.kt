@@ -18,7 +18,7 @@ class GetNewsArticlesUseCase @Inject constructor(
 ) : ObservableUseCase<List<NewsArticle>, Nothing?>(postExecutionThread) {
 
     // ObservableUseCase Methods.
-    override fun buildUseCaseObservable(params: Nothing?): Observable<List<NewsArticle>> {
+    public override fun buildUseCaseObservable(params: Nothing?): Observable<List<NewsArticle>> {
         return newsArticlesRepository.getNewsArticles()
     }
 }

@@ -9,7 +9,7 @@ import javax.inject.Inject
 class NewsArticleModelMapper @Inject constructor() : ModelMapper<NewsArticleModel, NewsArticleEntity> {
 
     companion object {
-        const val PUBLISHED_AT_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ssZ"
+        const val PUBLISHED_AT_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ssX"
     }
 
     override fun mapFromModel(model: NewsArticleModel): NewsArticleEntity {
