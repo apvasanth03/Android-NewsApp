@@ -1,0 +1,44 @@
+apply plugin: 'com.android.library'
+
+android {
+    def globalConfiguration = rootProject.extensions.getByName("ext")
+
+    compileSdkVersion globalConfiguration["androidCompileSdkVersion"]
+
+    defaultConfig {
+        minSdkVersion globalConfiguration["androidMinSdkVersion"]
+        targetSdkVersion globalConfiguration["androidTargetSdkVersion"]
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    def remoteDependencies = rootProject.ext.remoteDependencies
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Module Dependencies.
+    implementation project(':data')
+    implementation project(':httpclient')
+
+    // Kotlin.
+    implementation remoteDependencies.kotlin
+
+    // Libraries.
+    implementation remoteDependencies.javaxAnnotation
+    implementation remoteDependencies.javaxInject
+    implementation remoteDependencies.rxJava
+    implementation remoteDependencies.threeTenADP
+}

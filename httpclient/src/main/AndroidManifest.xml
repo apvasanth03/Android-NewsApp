@@ -1,0 +1,10 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.vasanth.httpclient">
+
+    <!-- Permission's -->
+
+    <!-- 1. Used to check if network is available or not. -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+
+</manifest>

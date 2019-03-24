@@ -1,0 +1,74 @@
+ext {
+
+    // Android
+    androidMinSdkVersion = 15
+    androidTargetSdkVersion = 28
+    androidCompileSdkVersion = 28
+    kotlinVersion = '1.3.21'
+
+    // Android Libraries
+    appcompatVersion = '1.0.2'
+    roomVersion = '2.1.0-alpha06'
+    constraintLayoutVersion = '1.1.3'
+
+    // Other Libraries.
+    javaxAnnotationVersion = '1.0'
+    javaxInjectVersion = '1'
+    gsonVersion = '2.8.5'
+    rxJavaVersion = '2.2.7'
+    threeTenABPVersion = '1.2.0'
+
+    // Module - "app" dependencies.
+    appUiDependencies = [
+            kotlin:             "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}",
+
+            androidAppCompact:  "androidx.appcompat:appcompat:${appcompatVersion}",
+            constraintLayout:   "androidx.constraintlayout:constraintlayout:${constraintLayoutVersion}",
+    ]
+
+    // Module - "domain" dependencies.
+    domainDependencies = [
+            kotlin:             "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}",
+            javaxAnnotation:    "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+            javaxInject:        "javax.inject:javax.inject:${javaxInjectVersion}",
+            rxJava:             "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+    ]
+
+    // Module - "data" dependencies.
+    dataDependencies = [
+            kotlin:             "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}",
+            javaxAnnotation:    "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+            javaxInject:        "javax.inject:javax.inject:${javaxInjectVersion}",
+            rxJava:             "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+    ]
+
+    // Module - "remote" dependencies.
+    remoteDependencies = [
+            kotlin:             "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}",
+            javaxAnnotation:    "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+            javaxInject:        "javax.inject:javax.inject:${javaxInjectVersion}",
+            rxJava:             "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+            threeTenADP:        "com.jakewharton.threetenabp:threetenabp:${threeTenABPVersion}"
+    ]
+
+    // Module - "cache" dependencies.
+    cacheDependencies = [
+            kotlin:             "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}",
+            javaxAnnotation:    "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+            javaxInject:        "javax.inject:javax.inject:${javaxInjectVersion}",
+            roomRuntime:        "androidx.room:room-runtime:${roomVersion}",
+            roomCompiler:       "androidx.room:room-compiler:${roomVersion}",
+            roomRxJava:         "androidx.room:room-rxjava2:${roomVersion}",
+            rxJava:             "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+    ]
+
+    // Module - "httpclient" dependencies.
+    httpclientDependencies = [
+            kotlin:             "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}",
+            javaxAnnotation:    "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+            javaxInject:        "javax.inject:javax.inject:${javaxInjectVersion}",
+            gson:               "com.google.code.gson:gson:${gsonVersion}",
+    ]
+
+
+}

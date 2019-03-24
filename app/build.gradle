@@ -1,0 +1,39 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    def globalConfiguration = rootProject.extensions.getByName("ext")
+
+    compileSdkVersion  globalConfiguration["androidCompileSdkVersion"]
+
+    defaultConfig {
+        applicationId "com.vasanth.newsapp"
+        minSdkVersion globalConfiguration["androidMinSdkVersion"]
+        targetSdkVersion globalConfiguration["androidTargetSdkVersion"]
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    def appUiDependencies = rootProject.ext.appUiDependencies
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Kotlin.
+    implementation appUiDependencies.kotlin
+
+    // Android.
+    implementation appUiDependencies.androidAppCompact
+    implementation appUiDependencies.constraintLayout
+}
