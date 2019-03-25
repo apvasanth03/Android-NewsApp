@@ -1,6 +1,6 @@
 # Android-NewsApp
 
-Simple News app build using [https://newsapi.org link](https://newsapi.org)
+Simple News app build using [https://newsapi.org](https://newsapi.org)
 
 The app is based on MVP architecture, principles of clean code and is split across multiple modules. The app uses android libraries such as RXJava2, Dagger2, JUnit etc.
 
