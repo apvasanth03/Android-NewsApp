@@ -10,9 +10,7 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-
         <!-- Activities. -->
-
         <activity android:name=".view.activity.NewsListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -20,9 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
-        <!-- End of Activities. -->
-
+        <activity android:name=".view.activity.NewsDetailActivity">
+        </activity>
     </application>
 
 </manifest>

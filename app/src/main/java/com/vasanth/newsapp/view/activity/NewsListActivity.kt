@@ -82,17 +82,18 @@ class NewsListActivity : AppCompatActivity() {
 
     private val newsArticleListener = object : NewsArticleListener {
         override fun onNewsArticleClicked(newsArticle: NewsArticleUIModel) {
-
+            viewModel.onNewsArticleItemClicked(newsArticle)
         }
     }
 
     private fun setUpViewModelBindings() {
         bindViewState()
         bindNewsArticles()
+        bindGoToNewsArticleScreen()
     }
 
     private fun bindViewState() {
-        viewModel.getViewState().observe(this, Observer { state ->
+        viewModel.viewStateObservable.observe(this, Observer { state ->
             when (state) {
                 NewsListViewModel.NewsListViewState.LOADING -> updateViewForLoadingState()
                 NewsListViewModel.NewsListViewState.DATA -> updateViewForDataState()
@@ -104,9 +105,16 @@ class NewsListActivity : AppCompatActivity() {
     }
 
     private fun bindNewsArticles() {
-        viewModel.getNewsArticles().observe(this, Observer { newsArticles ->
+        viewModel.newsArticlesObservable.observe(this, Observer { newsArticles ->
             adapter.newsArticles = newsArticles
             adapter.notifyDataSetChanged()
+        })
+    }
+
+    private fun bindGoToNewsArticleScreen() {
+        viewModel.goToNewsDetailScreenObservable.observe(this, Observer { newsArticle ->
+            val intent = NewsDetailActivity.getIntent(this, newsArticle)
+            startActivity(intent)
         })
     }
 

@@ -32,6 +32,15 @@ class NewsListViewModel @Inject constructor(
     private val newsArticles: MutableLiveData<List<NewsArticleUIModel>> by lazy {
         MutableLiveData<List<NewsArticleUIModel>>()
     }
+    private val goToNewsDetailScreen: MutableLiveData<NewsArticleUIModel> by lazy {
+        MutableLiveData<NewsArticleUIModel>()
+    }
+
+    // View Observable Properties.
+    val viewStateObservable: LiveData<NewsListViewState> get() = viewState
+    val newsArticlesObservable: LiveData<List<NewsArticleUIModel>> get() = newsArticles
+    val goToNewsDetailScreenObservable: LiveData<NewsArticleUIModel> = goToNewsDetailScreen
+
 
     // Init.
     init {
@@ -45,12 +54,8 @@ class NewsListViewModel @Inject constructor(
     }
 
     // Public Methods.
-    fun getViewState(): LiveData<NewsListViewState> {
-        return viewState
-    }
-
-    fun getNewsArticles(): LiveData<List<NewsArticleUIModel>> {
-        return newsArticles
+    fun onNewsArticleItemClicked(newsArticle: NewsArticleUIModel) {
+        goToNewsDetailScreen.value = newsArticle
     }
 
     // Private Methods.
