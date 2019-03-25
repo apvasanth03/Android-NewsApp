@@ -20,7 +20,6 @@ class NewsListViewModel @Inject constructor(
     enum class NewsListViewState {
         LOADING,
         DATA,
-        EMPTY,
         NO_INTERNET,
         ERROR
     }
@@ -70,11 +69,7 @@ class NewsListViewModel @Inject constructor(
         }
 
         override fun onNext(articles: List<NewsArticle>) {
-            if (articles.isEmpty()) {
-                viewState.value = NewsListViewState.EMPTY
-            } else {
-                viewState.value = NewsListViewState.DATA
-            }
+            viewState.value = NewsListViewState.DATA
             newsArticles.value = articles.map { mapper.mapToView(it) }
         }
 

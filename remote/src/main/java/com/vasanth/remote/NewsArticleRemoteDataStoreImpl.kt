@@ -26,7 +26,7 @@ class NewsArticleRemoteDataStoreImpl @Inject constructor(
 
     companion object {
         private const val NEWS_API_KEY = "d6c6c7358b70483a8625ab5aef41d5f3"
-        private const val GET_NEWS_ARTICLES_URL = "https://newsapi.org/v2/top-headlines?country=in&apiKey=$NEWS_API_KEY"
+        private const val GET_NEWS_ARTICLES_URL = "https://newsapi.org/v2/top-headlines?country=us&apiKey=$NEWS_API_KEY"
     }
 
     // NewsArticleRemote Methods.

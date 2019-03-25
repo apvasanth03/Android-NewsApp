@@ -97,7 +97,6 @@ class NewsListActivity : AppCompatActivity() {
             when (state) {
                 NewsListViewModel.NewsListViewState.LOADING -> updateViewForLoadingState()
                 NewsListViewModel.NewsListViewState.DATA -> updateViewForDataState()
-                NewsListViewModel.NewsListViewState.EMPTY -> updateViewForEmptyState()
                 NewsListViewModel.NewsListViewState.NO_INTERNET -> updateViewForNoInternetState()
                 NewsListViewModel.NewsListViewState.ERROR -> updateViewForErrorState()
             }
@@ -127,13 +126,6 @@ class NewsListActivity : AppCompatActivity() {
     private fun updateViewForDataState() {
         rvNewsArticles.visibility = View.VISIBLE
         vgEmptyViewContainer.visibility = View.GONE
-        pbProgress.visibility = View.GONE
-    }
-
-    private fun updateViewForEmptyState() {
-        rvNewsArticles.visibility = View.GONE
-        errorView.updateView(R.drawable.ic_error_outline, getString(R.string.news_articles_empty_message), null)
-        vgEmptyViewContainer.visibility = View.VISIBLE
         pbProgress.visibility = View.GONE
     }
 

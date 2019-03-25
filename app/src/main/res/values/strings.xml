@@ -12,7 +12,6 @@
 
     <!-- NewsList Screen. -->
     <string name="news_article_list_title">Headlines</string>
-    <string name="news_articles_empty_message">No News Articles Found.</string>
 
 
 </resources>
