@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">News App</string>
+
+    <!-- Common Strings. -->
+    <string name="no_network_error_title">No Network</string>
+    <string name="no_network_error_message">Please check your connection and try again.</string>
+    <string name="unknown_error_title">Error</string>
+    <string name="unknown_error_message">Something isn\'t right, try refreshing the page or exit the app and try
+        again.
+    </string>
+
+
+    <!-- NewsList Screen. -->
+    <string name="news_article_list_title">Headlines</string>
+    <string name="news_articles_empty_message">No News Articles Found.</string>
+
+
 </resources>

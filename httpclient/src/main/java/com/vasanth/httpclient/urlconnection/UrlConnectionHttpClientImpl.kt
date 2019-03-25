@@ -11,13 +11,16 @@ import com.vasanth.httpclient.HttpResponseListener
 import java.io.*
 import java.net.URL
 import javax.inject.Inject
+import javax.inject.Singleton
 import javax.net.ssl.HttpsURLConnection
+
 
 /**
  * HttpClient implementation using Android HttpUrlConnection.
  *
  * @author Vasanth
  */
+@Singleton
 class UrlConnectionHttpClientImpl @Inject constructor(private val appContext: Context, private val gson: Gson) :
     HttpClient {
 
@@ -87,7 +90,7 @@ class UrlConnectionHttpClientImpl @Inject constructor(private val appContext: Co
                 )
             }
 
-            val responseJson = readStream(stream = connection.inputStream, maxReadSize = 500)
+            val responseJson = readStream(stream = connection.inputStream)
             val response = parseResponse<T>(response = responseJson, classOfT = classOfT)
             return response
         } catch (httpClientExp: HttpClientException) {
@@ -120,6 +123,24 @@ class UrlConnectionHttpClientImpl @Inject constructor(private val appContext: Co
             readSize = reader?.read(rawBuffer) ?: -1
         }
         return buffer.toString()
+    }
+
+    /**
+     * Converts the contents of an InputStream to a String.
+     */
+    @Throws(IOException::class)
+    fun readStream(stream: InputStream): String {
+        val stringBuilder = StringBuilder()
+        var line: String? = null
+
+        val bufferedReader = BufferedReader(InputStreamReader(stream, "UTF-8"))
+        line = bufferedReader.readLine()
+        while (line != null) {
+            stringBuilder.append(line)
+            line = bufferedReader.readLine()
+        }
+
+        return stringBuilder.toString()
     }
 
     /**

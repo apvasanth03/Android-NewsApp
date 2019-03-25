@@ -22,7 +22,7 @@ class NewsArticleModelMapperTest {
         assertThat(entity.title, `is`(equalTo(model.title)))
         assertThat(entity.description, `is`(equalTo(model.description)))
         assertThat(entity.author, `is`(equalTo(model.author)))
-        assertThat(entity.source, `is`(equalTo(model.source.name)))
+        assertThat(entity.source, `is`(equalTo(model.source?.name)))
         assertThat(entity.url, `is`(equalTo(model.url)))
         assertThat(entity.urlToImage, `is`(equalTo(model.urlToImage)))
 

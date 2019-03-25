@@ -8,6 +8,7 @@ import androidx.room.TypeConverters
 import com.vasanth.cache.dao.CachedNewsArticlesDao
 import com.vasanth.cache.model.CachedNewsArticle
 import javax.inject.Inject
+import javax.inject.Singleton
 
 /**
  * A class responsible for all our database related stuff.
@@ -16,6 +17,7 @@ import javax.inject.Inject
  */
 @Database(entities = [CachedNewsArticle::class], version = 1)
 @TypeConverters(DateConverter::class)
+@Singleton
 abstract class NewsArticlesDatabase @Inject constructor() : RoomDatabase() {
 
     abstract fun cachedNewsArticlesDao(): CachedNewsArticlesDao

@@ -10,7 +10,7 @@ import java.util.*
 class CachedNewsArticle(
     @ColumnInfo(name = NewsArticleDBConstants.COLUMN_TITLE) val title: String,
     @ColumnInfo(name = NewsArticleDBConstants.COLUMN_DESCRIPTION) val description: String,
-    @ColumnInfo(name = NewsArticleDBConstants.COLUMN_AUTHOR) val author: String,
+    @ColumnInfo(name = NewsArticleDBConstants.COLUMN_AUTHOR) val author: String?,
     @ColumnInfo(name = NewsArticleDBConstants.COLUMN_SOURCE) val source: String,
     @ColumnInfo(name = NewsArticleDBConstants.COLUMN_PUBLISHED_AT) val publishedAt: Date,
     @ColumnInfo(name = NewsArticleDBConstants.COLUMN_URL) val url: String,

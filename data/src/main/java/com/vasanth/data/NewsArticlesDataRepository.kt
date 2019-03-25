@@ -10,12 +10,14 @@ import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
+import javax.inject.Singleton
 
 /**
  * A Class provides implementation for NewsArticlesRepository.
  *
  * @author Vasanth
  */
+@Singleton
 class NewsArticlesDataRepository @Inject constructor(
     private val remoteDataStore: NewsArticleRemoteDataStore,
     private val cacheDataStore: NewsArticleCacheDataStore,

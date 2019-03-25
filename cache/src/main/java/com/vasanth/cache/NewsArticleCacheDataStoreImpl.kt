@@ -8,12 +8,14 @@ import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single
 import javax.inject.Inject
+import javax.inject.Singleton
 
 /**
  * A Class provides implementation for NewsArticleCacheDataStore.
  *
  * @author Vasanth
  */
+@Singleton
 class NewsArticleCacheDataStoreImpl @Inject constructor(
     private val newsArticlesDatabase: NewsArticlesDatabase,
     private val mapper: CachedNewsArticleMapper

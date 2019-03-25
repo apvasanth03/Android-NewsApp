@@ -11,12 +11,17 @@ ext {
     lifecycleVersion = '2.0.0'
     roomVersion = '2.1.0-alpha06'
     constraintLayoutVersion = '1.1.3'
+    recyclerviewVersion = '1.0.0'
+    cardViewVersion = '1.0.0'
 
     // Other Libraries.
     javaxAnnotationVersion = '1.0'
     javaxInjectVersion = '1'
     gsonVersion = '2.8.5'
     rxJavaVersion = '2.2.7'
+    rxAndroidVersion = '2.1.1'
+    daggerVersion = '2.21'
+    glideVersion = '4.9.0'
     threeTenABPVersion = '1.2.0'
 
     //Testing
@@ -26,9 +31,25 @@ ext {
 
     // Module - "app" dependencies.
     appUiDependencies = [
-            kotlin           : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}",
-            androidAppCompact: "androidx.appcompat:appcompat:${appcompatVersion}",
-            constraintLayout : "androidx.constraintlayout:constraintlayout:${constraintLayoutVersion}",
+            kotlin                : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}",
+            androidAppCompact     : "androidx.appcompat:appcompat:${appcompatVersion}",
+            constraintLayout      : "androidx.constraintlayout:constraintlayout:${constraintLayoutVersion}",
+            recyclerView          : "androidx.recyclerview:recyclerview:${recyclerviewVersion}",
+            cardView              : "androidx.cardview:cardview:${cardViewVersion}",
+            lifecycle             : "androidx.lifecycle:lifecycle-extensions:${lifecycleVersion}",
+            lifecycleCompiler     : "androidx.lifecycle:lifecycle-compiler:${lifecycleVersion}",
+            roomRuntime           : "androidx.room:room-runtime:${roomVersion}",
+            roomCompiler          : "androidx.room:room-compiler:${roomVersion}",
+            javaxAnnotation       : "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+            javaxInject           : "javax.inject:javax.inject:${javaxInjectVersion}",
+            rxJava                : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+            rxAndroid             : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
+            dagger                : "com.google.dagger:dagger:${daggerVersion}",
+            daggerCompiler        : "com.google.dagger:dagger-compiler:${daggerVersion}",
+            daggerAndroid         : "com.google.dagger:dagger-android:${daggerVersion}",
+            daggerAndroidProcessor: "com.google.dagger:dagger-android-processor:${daggerVersion}",
+            glide                 : "com.github.bumptech.glide:glide:${glideVersion}",
+            gson                  : "com.google.code.gson:gson:${gsonVersion}",
     ]
 
     // Module - "domain" dependencies.

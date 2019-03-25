@@ -10,12 +10,14 @@ import com.vasanth.remote.model.NewsArticleResponseModel
 import io.reactivex.Single
 import io.reactivex.SingleOnSubscribe
 import javax.inject.Inject
+import javax.inject.Singleton
 
 /**
  * A Class provides implementation for NewsArticleRemoteDataStore.
  *
  * @author Vasanth
  */
+@Singleton
 class NewsArticleRemoteDataStoreImpl @Inject constructor(
     private val httpClient: HttpClient,
     private val mapper: NewsArticleModelMapper
@@ -23,8 +25,8 @@ class NewsArticleRemoteDataStoreImpl @Inject constructor(
     NewsArticleRemoteDataStore {
 
     companion object {
-        private const val NEWS_API_KEY = ""
-        private const val GET_NEWS_ARTICLES_URL = "https://newsapi.org/v2/top-headlines?country=us&apiKey=$NEWS_API_KEY"
+        private const val NEWS_API_KEY = "d6c6c7358b70483a8625ab5aef41d5f3"
+        private const val GET_NEWS_ARTICLES_URL = "https://newsapi.org/v2/top-headlines?country=in&apiKey=$NEWS_API_KEY"
     }
 
     // NewsArticleRemote Methods.

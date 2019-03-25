@@ -13,15 +13,16 @@ class NewsArticleModelMapper @Inject constructor() : ModelMapper<NewsArticleMode
     }
 
     override fun mapFromModel(model: NewsArticleModel): NewsArticleEntity {
-        val publishedAtDate = DateUtil.convertStringToDate(model.publishedAt, PUBLISHED_AT_DATE_FORMAT) ?: Date()
+        val publishedAtDate =
+            DateUtil.convertStringToDate((model.publishedAt ?: ""), PUBLISHED_AT_DATE_FORMAT) ?: Date()
         return NewsArticleEntity(
-            model.title,
-            model.description,
+            model.title ?: "",
+            model.description ?: "",
             model.author,
-            model.source.name,
+            model.source?.name ?: "",
             publishedAtDate,
-            model.url,
-            model.urlToImage
+            model.url ?: "",
+            model.urlToImage ?: ""
         )
     }
 }

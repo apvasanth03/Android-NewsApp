@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- Color Palette. -->
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+    <!-- Text Color's. -->
+    <color name="textColorPrimary">#DD000000</color>
+    <color name="textColorSecondary">#89000000</color>
+    <color name="textColorTertiary">#60000000</color>
+
+    <!-- Other Colors. -->
+    <color name="white">#FFFFFF</color>
+
 </resources>
