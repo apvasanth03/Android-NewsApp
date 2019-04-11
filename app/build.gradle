@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: "androidx.navigation.safeargs.kotlin"
 
 android {
     def globalConfiguration = rootProject.extensions.getByName("ext")
@@ -44,10 +45,12 @@ dependencies {
     implementation appUiDependencies.androidAppCompact
     implementation appUiDependencies.constraintLayout
     implementation appUiDependencies.recyclerView
+    implementation appUiDependencies.navigationFragment
+    implementation appUiDependencies.navigationUI
+    implementation appUiDependencies.navigationFragmentKtx
+    implementation appUiDependencies.navigationUIKtx
     implementation appUiDependencies.cardView
     implementation appUiDependencies.lifecycle
-    implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     kapt appUiDependencies.lifecycleCompiler
     implementation appUiDependencies.roomRuntime
     kapt appUiDependencies.roomCompiler

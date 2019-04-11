@@ -1,14 +1,17 @@
-package com.vasanth.newsapp.view.activity
+package com.vasanth.newsapp.view.fragment
 
+
+import android.content.Context
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.vasanth.newsapp.R
@@ -17,15 +20,15 @@ import com.vasanth.newsapp.view.listener.NewsArticleListener
 import com.vasanth.newsapp.view.view.ErrorView
 import com.vasanth.presentation.model.NewsArticleUIModel
 import com.vasanth.presentation.viewmodel.NewsListViewModel
-import dagger.android.AndroidInjection
+import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
 /**
- * Activity responsible to provide UI for NewsList screen.
+ * Fragment responsible to provide UI for NewsList screen.
  *
  * @author Vasanth
  */
-class NewsListActivity : AppCompatActivity() {
+class NewsListFragment : Fragment() {
 
     // Properties.
     @Inject
@@ -33,7 +36,6 @@ class NewsListActivity : AppCompatActivity() {
     @Inject
     lateinit var adapter: NewsListAdapter
 
-    lateinit var toolbar: Toolbar
     lateinit var rvNewsArticles: RecyclerView
     lateinit var vgEmptyViewContainer: ViewGroup
     lateinit var pbProgress: ProgressBar
@@ -41,35 +43,40 @@ class NewsListActivity : AppCompatActivity() {
 
     lateinit var viewModel: NewsListViewModel
 
-    // Activity Methods.
-    override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
+    // Fragment Methods.
+    override fun onAttach(context: Context) {
+        AndroidSupportInjection.inject(this)
 
+        super.onAttach(context)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_news_list)
 
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(NewsListViewModel::class.java)
+    }
 
-        toolbar = findViewById(R.id.toolbar)
-        rvNewsArticles = findViewById(R.id.news_articles)
-        vgEmptyViewContainer = findViewById(R.id.error_view_container)
-        pbProgress = findViewById(R.id.progress)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val view = inflater.inflate(R.layout.fragment_news_list, container, false)
+
+        rvNewsArticles = view.findViewById(R.id.news_articles)
+        vgEmptyViewContainer = view.findViewById(R.id.error_view_container)
+        pbProgress = view.findViewById(R.id.progress)
 
         initializeViews()
         addListeners()
         setUpViewModelBindings()
+
+        return view
     }
 
     // Private Methods.
     private fun initializeViews() {
-        setSupportActionBar(toolbar)
-        supportActionBar?.title = getString(R.string.news_article_list_title)
-
-        val layoutManager = LinearLayoutManager(this)
+        val layoutManager = LinearLayoutManager(context)
         rvNewsArticles.layoutManager = layoutManager
         rvNewsArticles.adapter = adapter
 
-        errorView = ErrorView(this, R.drawable.ic_error_outline, null, null)
+        errorView = ErrorView(context!!, R.drawable.ic_error_outline, null, null)
         vgEmptyViewContainer.addView(errorView)
         vgEmptyViewContainer.visibility = View.GONE
 
@@ -111,9 +118,12 @@ class NewsListActivity : AppCompatActivity() {
     }
 
     private fun bindGoToNewsArticleScreen() {
-        viewModel.goToNewsDetailScreenObservable.observe(this, Observer { newsArticle ->
-            val intent = NewsDetailActivity.getIntent(this, newsArticle)
-            startActivity(intent)
+        viewModel.goToNewsDetailScreenObservable.observe(this, Observer { event ->
+            event.getContentIfNotHandled()?.let { newsArticle ->
+                val startDetailAction = NewsListFragmentDirections.startDetailFragment(newsArticle.source, newsArticle)
+                val navController = findNavController()
+                navController.navigate(startDetailAction)
+            }
         })
     }
 
