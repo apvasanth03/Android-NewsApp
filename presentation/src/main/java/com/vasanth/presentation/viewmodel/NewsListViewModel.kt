@@ -8,6 +8,7 @@ import com.vasanth.domain.model.NewsArticle
 import com.vasanth.httpclient.HttpClientException
 import com.vasanth.presentation.mapper.NewsArticleUIMapper
 import com.vasanth.presentation.model.NewsArticleUIModel
+import com.vasanth.presentation.util.Event
 import io.reactivex.observers.DisposableObserver
 import javax.inject.Inject
 
@@ -31,14 +32,14 @@ class NewsListViewModel @Inject constructor(
     private val newsArticles: MutableLiveData<List<NewsArticleUIModel>> by lazy {
         MutableLiveData<List<NewsArticleUIModel>>()
     }
-    private val goToNewsDetailScreen: MutableLiveData<NewsArticleUIModel> by lazy {
-        MutableLiveData<NewsArticleUIModel>()
+    private val goToNewsDetailScreen: MutableLiveData<Event<NewsArticleUIModel>> by lazy {
+        MutableLiveData<Event<NewsArticleUIModel>>()
     }
 
     // View Observable Properties.
     val viewStateObservable: LiveData<NewsListViewState> get() = viewState
     val newsArticlesObservable: LiveData<List<NewsArticleUIModel>> get() = newsArticles
-    val goToNewsDetailScreenObservable: LiveData<NewsArticleUIModel> = goToNewsDetailScreen
+    val goToNewsDetailScreenObservable: LiveData<Event<NewsArticleUIModel>> = goToNewsDetailScreen
 
 
     // Init.
@@ -54,7 +55,7 @@ class NewsListViewModel @Inject constructor(
 
     // Public Methods.
     fun onNewsArticleItemClicked(newsArticle: NewsArticleUIModel) {
-        goToNewsDetailScreen.value = newsArticle
+        goToNewsDetailScreen.value = Event(newsArticle)
     }
 
     // Private Methods.

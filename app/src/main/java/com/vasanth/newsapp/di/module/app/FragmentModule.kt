@@ -1,16 +1,16 @@
 package com.vasanth.newsapp.di.module.app
 
 import com.vasanth.newsapp.di.module.news.NewsListModule
-import com.vasanth.newsapp.di.scope.ActivityScope
-import com.vasanth.newsapp.view.activity.NewsListActivity
+import com.vasanth.newsapp.di.scope.FragmentScope
+import com.vasanth.newsapp.view.fragment.NewsListFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
 @Module
-abstract class ActivityModule {
+abstract class FragmentModule {
 
-    @ActivityScope
+    @FragmentScope
     @ContributesAndroidInjector(modules = [NewsListModule::class])
-    abstract fun contributesNewsListActivity(): NewsListActivity
+    abstract fun contributesNewsListFragment(): NewsListFragment
 
 }
