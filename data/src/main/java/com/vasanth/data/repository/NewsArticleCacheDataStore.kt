@@ -16,7 +16,7 @@ interface NewsArticleCacheDataStore {
 
     fun saveNewsArticles(newsArticles: List<NewsArticleEntity>): Completable
 
-    fun getNewsArticles(): Observable<List<NewsArticleEntity>>
+    fun getNewsArticles(): Single<List<NewsArticleEntity>>
 
     fun areNewsArticlesCached(): Single<Boolean>
 

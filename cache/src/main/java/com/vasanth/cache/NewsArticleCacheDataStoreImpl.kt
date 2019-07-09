@@ -32,7 +32,7 @@ class NewsArticleCacheDataStoreImpl @Inject constructor(
         )
     }
 
-    override fun getNewsArticles(): Observable<List<NewsArticleEntity>> {
+    override fun getNewsArticles(): Single<List<NewsArticleEntity>> {
         return newsArticlesDatabase.cachedNewsArticlesDao().getNewsArticles()
             .map { it.map { mapper.mapFromCached(it) } }
     }

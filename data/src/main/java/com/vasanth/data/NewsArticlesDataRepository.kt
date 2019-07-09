@@ -25,17 +25,18 @@ class NewsArticlesDataRepository @Inject constructor(
 ) : NewsArticlesRepository {
 
     // NewsArticlesRepository Methods.
-    override fun getNewsArticles(): Observable<List<NewsArticle>> {
-        return cacheDataStore.areNewsArticlesCached().toObservable()
-            .flatMap { areCached ->
-                if (areCached) {
-                    updateCacheWithLatestDataFromRemote()
-                    return@flatMap cacheDataStore.getNewsArticles()
-                } else {
-                    return@flatMap getNewsArticlesFromRemoteAndSaveItToCache().toObservable()
-                }
-            }
-            .map { newsArticles ->
+    override fun getNewsArticles(): Single<List<NewsArticle>> {
+        return getNewsArticlesFromRemoteAndSaveItToCache()
+            .onErrorResumeNext { error ->
+                return@onErrorResumeNext cacheDataStore.areNewsArticlesCached()
+                    .flatMap { areCached ->
+                        if (areCached) {
+                            return@flatMap cacheDataStore.getNewsArticles()
+                        } else {
+                            return@flatMap Single.error<List<NewsArticleEntity>>(error)
+                        }
+                    }
+            }.map { newsArticles ->
                 newsArticles.map { mapper.mapFromEntity(it) }
             }
     }
@@ -51,16 +52,5 @@ class NewsArticlesDataRepository @Inject constructor(
                     .andThen(cacheDataStore.saveNewsArticles(newsArticles))
                     .toSingleDefault(newsArticles)
             }
-    }
-
-    /**
-     * A method updates cache dataStore with latest data from remote dataStore in background.
-     */
-    private fun updateCacheWithLatestDataFromRemote() {
-        getNewsArticlesFromRemoteAndSaveItToCache()
-            .subscribeOn(Schedulers.io())
-            .onErrorReturnItem(ArrayList())
-            .subscribe()
-
     }
 }

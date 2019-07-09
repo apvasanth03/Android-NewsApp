@@ -1,7 +1,7 @@
 package com.vasanth.domain.repository
 
 import com.vasanth.domain.model.NewsArticle
-import io.reactivex.Observable
+import io.reactivex.Single
 
 /**
  * The interface provides abstraction over data layer.
@@ -10,6 +10,6 @@ import io.reactivex.Observable
  */
 interface NewsArticlesRepository {
 
-    fun getNewsArticles(): Observable<List<NewsArticle>>
+    fun getNewsArticles(): Single<List<NewsArticle>>
 
 }

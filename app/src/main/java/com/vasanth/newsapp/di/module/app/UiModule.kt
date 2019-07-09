@@ -1,7 +1,7 @@
 package com.vasanth.newsapp.di.module.app
 
-import com.vasanth.domain.executor.PostExecutionThread
-import com.vasanth.newsapp.app.UiThread
+import com.vasanth.newsapp.util.AppSchedulerProvider
+import com.vasanth.presentation.util.SchedulerProvider
 import dagger.Binds
 import dagger.Module
 
@@ -9,6 +9,6 @@ import dagger.Module
 abstract class UiModule {
 
     @Binds
-    abstract fun bindPostExecutionThread(uiThread: UiThread): PostExecutionThread
+    abstract fun bindSchedulerProvider(appSchedulerProvider: AppSchedulerProvider): SchedulerProvider
 
 }

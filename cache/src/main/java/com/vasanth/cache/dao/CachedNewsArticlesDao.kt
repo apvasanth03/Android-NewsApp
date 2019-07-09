@@ -17,7 +17,7 @@ interface CachedNewsArticlesDao {
     fun insertNewsArticles(newsArticles: List<CachedNewsArticle>): Completable
 
     @Query(NewsArticleDBConstants.QUERY_NEWS_ARTICLES)
-    fun getNewsArticles(): Observable<List<CachedNewsArticle>>
+    fun getNewsArticles(): Single<List<CachedNewsArticle>>
 
     @Query(NewsArticleDBConstants.QUERY_NEWS_ARTICLES_COUNT)
     fun getNewsArticlesCount(): Single<Int>

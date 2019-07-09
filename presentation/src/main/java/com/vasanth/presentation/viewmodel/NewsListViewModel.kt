@@ -3,18 +3,19 @@ package com.vasanth.presentation.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.vasanth.domain.interactor.browse.GetNewsArticlesUseCase
-import com.vasanth.domain.model.NewsArticle
+import com.vasanth.domain.usecase.GetNewsArticlesUseCase
 import com.vasanth.httpclient.HttpClientException
 import com.vasanth.presentation.mapper.NewsArticleUIMapper
 import com.vasanth.presentation.model.NewsArticleUIModel
 import com.vasanth.presentation.util.Event
-import io.reactivex.observers.DisposableObserver
+import com.vasanth.presentation.util.SchedulerProvider
+import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
 class NewsListViewModel @Inject constructor(
     private val getNewsArticlesUseCase: GetNewsArticlesUseCase,
-    private val mapper: NewsArticleUIMapper
+    private val mapper: NewsArticleUIMapper,
+    private val schedulerProvider: SchedulerProvider
 ) : ViewModel() {
 
     // Inner Types.
@@ -36,6 +37,8 @@ class NewsListViewModel @Inject constructor(
         MutableLiveData<Event<NewsArticleUIModel>>()
     }
 
+    private val disposables: CompositeDisposable = CompositeDisposable()
+
     // View Observable Properties.
     val viewStateObservable: LiveData<NewsListViewState> get() = viewState
     val newsArticlesObservable: LiveData<List<NewsArticleUIModel>> get() = newsArticles
@@ -49,7 +52,7 @@ class NewsListViewModel @Inject constructor(
 
     // ViewModel Methods.
     override fun onCleared() {
-        getNewsArticlesUseCase.dispose()
+        disposables.dispose()
         super.onCleared()
     }
 
@@ -61,26 +64,26 @@ class NewsListViewModel @Inject constructor(
     // Private Methods.
     private fun fetchNewsArticles() {
         viewState.value = NewsListViewState.LOADING
-        getNewsArticlesUseCase.execute(FetchNewsArticlesSubscriber())
-    }
-
-    inner class FetchNewsArticlesSubscriber : DisposableObserver<List<NewsArticle>>() {
-        override fun onComplete() {
-
-        }
-
-        override fun onNext(articles: List<NewsArticle>) {
-            viewState.value = NewsListViewState.DATA
-            newsArticles.value = articles.map { mapper.mapToView(it) }
-        }
-
-        override fun onError(e: Throwable) {
-            if (e is HttpClientException && e.errorCode == HttpClientException.ErrorCode.NO_CONNECTION_ERROR) {
-                viewState.value = NewsListViewState.NO_INTERNET
-            } else {
-                viewState.value = NewsListViewState.ERROR
+        val disposable = getNewsArticlesUseCase.execute()
+            .map { newsArticles ->
+                return@map newsArticles.map { mapper.mapToView(it) }
             }
-        }
+            .subscribeOn(schedulerProvider.backgroundScheduler())
+            .observeOn(schedulerProvider.uiScheduler())
+            .subscribe(this::fetchNewsArticlesSuccess, this::fetchNewsArticlesError)
+        disposables.add(disposable)
     }
 
+    private fun fetchNewsArticlesSuccess(articles: List<NewsArticleUIModel>) {
+        viewState.value = NewsListViewState.DATA
+        newsArticles.value = articles
+    }
+
+    private fun fetchNewsArticlesError(e: Throwable) {
+        if (e is HttpClientException && e.errorCode == HttpClientException.ErrorCode.NO_CONNECTION_ERROR) {
+            viewState.value = NewsListViewState.NO_INTERNET
+        } else {
+            viewState.value = NewsListViewState.ERROR
+        }
+    }
 }
